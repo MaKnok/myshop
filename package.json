@@ -1,0 +1,52 @@
+{
+  "name": "myshop",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^2.0.0-beta.6",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@unform/core": "^2.1.6",
+    "@unform/web": "^2.1.6",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.0-beta2",
+    "formik": "^2.2.6",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
+    "react-currency-masked-input": "^2.5.0",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^7.1.0",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "remask": "^0.1.0-alpha.5",
+    "web-vitals": "^1.1.1",
+    "webpack": "^4.44.2",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+export const ProductTypes = ['--Escolha o Tipo do Produto--','Produto 1','Produto 2', 'Produto 3', 'Produto 4', 'Produto 5'];

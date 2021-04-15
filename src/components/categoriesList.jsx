@@ -1,0 +1,1 @@
+export const Categories = ['--Escolha uma Categoria--','Categoria 1','Categoria 2','Categoria 3','Categoria 4','Categoria 5'];
