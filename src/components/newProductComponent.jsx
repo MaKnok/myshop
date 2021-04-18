@@ -4,6 +4,7 @@ import FormProducts2 from './formProducts2';
 import FormProducts3 from './formProducts3';
 import FormProductsSuccess from './formProductsSuccess';
 import PropTypes from "prop-types";
+import { isArrayBindingPattern } from 'typescript';
 
 class NewProduct extends Component {
 

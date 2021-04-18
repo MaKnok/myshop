@@ -6,15 +6,15 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
-import {Categories} from './categoriesList.jsx';
+import {Categories} from './categoriesList';
 import {Brands} from './brandsList';
 import {ProductTypes} from './productTypesList';
-import NewProduct from './newProductComponent.jsx';
 
-let schema = yup.object().shape({
-    productCategory: yup.string().required(),
-    productBrand: yup.string().required(),
-    productType: yup.string().required()
+
+const schema = yup.object().shape({
+    productCategory: yup.string().required('Escolha uma categoria para o seu produto.'),
+    productBrand: yup.string().required('Escolha a marca do seu produto.'),
+    productType: yup.string().required('Escolha o tipo do seu produto.'),
     });
 
 class FormProducts1 extends Component {
@@ -23,38 +23,49 @@ class FormProducts1 extends Component {
         this.props.handleReset1();
     }
 
+    continue = values => {
+        this.props.nextStep();
+    }
+
     render() { 
 
         const {values, handleChange, handleReset1} = this.props;
 
         const CategoryOptions = Categories,
             MakeItemCategory = function(itemCategory) {
-                return <option value={itemCategory} key={itemCategory}>{itemCategory}</option>;
+                return <option value={itemCategory.value} key={itemCategory.label}>{itemCategory.label}</option>;
         };
 
         const BrandOptions = Brands,
             MakeItemBrand = function(itemBrand) {
-                return <option value={itemBrand} key={itemBrand}>{itemBrand}</option>;
+                return <option value={itemBrand.value} key={itemBrand.label}>{itemBrand.label}</option>;
         };
 
         const ProductOptions = ProductTypes,
             MakeItemProduct = function(itemProduct) {
-                return <option value={itemProduct} key={itemProduct}>{itemProduct}</option>;
+                return <option value={itemProduct.value} key={itemProduct.label}>{itemProduct.label}</option>;
         };
 
         return ( 
             <Formik
-
+            enableReinitialize
+            validateOnChange={false}
+            validateOnBlur={false}
             initialValues = {{
-                productCategory:'',
-                productBrand: '',
-                productType: ''
+                productCategory:values.productCategory,
+                productBrand:values.productBrand,
+                productType:values.productType,
             }}
 
              validationSchema = {schema}
 
-             onSubmit = {
-               values => {console.log(values)}
+             onSubmit = {  
+               (values, {setSubmitting} )=> {
+                   setSubmitting(true);
+                   this.continue();
+                   setSubmitting(false);
+                   console.log(values)
+               }
              }
 
             >
@@ -90,7 +101,8 @@ class FormProducts1 extends Component {
                         onChange={handleChange('productBrand')} 
                         value={values.productBrand}
                         onBlur = {() => handleBlur('productBrand',true)}
-                        isInvalid = {touched.productBrand && errors.productBrand} > 
+                        isInvalid = {touched.productBrand && errors.productBrand} 
+                        > 
                         {BrandOptions.map(MakeItemBrand)}
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">{errors.productBrand}</Form.Control.Feedback>
@@ -104,12 +116,13 @@ class FormProducts1 extends Component {
                         onChange={handleChange('productType')} 
                         value={values.productType}
                         onBlur = {() => handleBlur('productType',true)}
-                        isInvalid={touched.productType && errors.productType}>
+                        isInvalid={touched.productType && errors.productType}
+                        >
                         {ProductOptions.map(MakeItemProduct)}
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">{errors.productType}</Form.Control.Feedback>
                 </Form.Group>
-            
+
                 <Form.Group controlId="buttonsCategory" style={this.formatForm}>
                     <Button variant="secondary m-2" type="reset" style={this.styleAddButton} onClick={this.reset}>
                         Limpar
